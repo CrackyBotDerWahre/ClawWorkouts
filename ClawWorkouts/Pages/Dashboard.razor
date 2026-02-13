@@ -34,18 +34,18 @@
 </MudGrid>
 
 @code {
-    private double currentWeight = 118.6;
-    private double startWeight = 120.0;
-    private double targetWeight = 95.0;
+    private double currentWeight = 100.0;
+    private double startWeight = 105.0;
+    private double targetWeight = 85.0;
 
-    private double[] progressData = { 1.4, 23.6 }; // Lost so far, still to lose
+    private double[] progressData = { 5.0, 15.0 }; // Lost so far, still to lose
     private string[] labels = { "Lost", "Remaining" };
 
     public List<ChartSeries> Series = new List<ChartSeries>()
     {
-        new ChartSeries() { Name = "Weight (kg)", Data = new double[] { 120.0, 119.5, 118.6 } },
+        new ChartSeries() { Name = "Weight (kg)", Data = new double[] { 105.0, 103.5, 100.0 } },
     };
-    public string[] XAxisLabels = { "Feb 04", "Feb 09", "Feb 12" };
+    public string[] XAxisLabels = { "Jan 01", "Jan 15", "Feb 01" };
 
     private double CalculateProgress()
     {

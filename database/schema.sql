@@ -38,10 +38,10 @@ CREATE TABLE [dbo].[ExerciseEntries] (
         REFERENCES [dbo].[WorkoutSessions] ([Id]) ON DELETE CASCADE
 );
 
--- Insert initial data for Ismail
-INSERT INTO [dbo].[UserProfiles] (Name, HeightCm, TargetWeightKg, GoalDate)
-VALUES ('Ismail', 183, 95.0, '2026-12-31');
+-- Insert initial data (Template)
+-- INSERT INTO [dbo].[UserProfiles] (Name, HeightCm, TargetWeightKg, GoalDate)
+-- VALUES ('YourName', 180, 85.0, '2026-12-31');
 
--- Insert current weight
-INSERT INTO [dbo].[WeightEntries] (WeightKg, Date, Note)
-VALUES (118.6, '2026-02-12', 'Startpunkt nach Plateau');
+-- Insert initial weight (Template)
+-- INSERT INTO [dbo].[WeightEntries] (WeightKg, Date, Note)
+-- VALUES (100.0, GETUTCDATE(), 'Starting Point');
