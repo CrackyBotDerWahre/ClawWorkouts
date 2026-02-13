@@ -1,0 +1,56 @@
+@page "/"
+@using MudBlazor
+
+<MudText Typo="Typo.h3" GutterBottom="true">Dashboard</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="6" md="4">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+            <MudText Typo="Typo.h6">Current Weight</MudText>
+            <MudText Typo="Typo.h2" Color="Color.Primary">118,6 kg</MudText>
+            <MudText Typo="Typo.body2">Last update: 12.02.2026</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="4">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+            <MudText Typo="Typo.h6">Target Weight</MudText>
+            <MudText Typo="Typo.h2" Color="Color.Secondary">95,0 kg</MudText>
+            <MudText Typo="Typo.body2">Goal: -23,6 kg</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+            <MudText Typo="Typo.h6">Overall Progress</MudText>
+            <MudChart ChartType="ChartType.Donut" InputData="@progressData" InputLabels="@labels" Width="100px" Height="100px" />
+            <MudText Typo="Typo.body2" Class="mt-2">@($"{Math.Round(CalculateProgress(), 1)}% achieved")</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudText Typo="Typo.h6">Weight Journey</MudText>
+            <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" Height="350px" />
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private double currentWeight = 100.0;
+    private double startWeight = 105.0;
+    private double targetWeight = 85.0;
+
+    private double[] progressData = { 5.0, 15.0 }; // Lost so far, still to lose
+    private string[] labels = { "Lost", "Remaining" };
+
+    public List<ChartSeries> Series = new List<ChartSeries>()
+    {
+        new ChartSeries() { Name = "Weight (kg)", Data = new double[] { 105.0, 103.5, 100.0 } },
+    };
+    public string[] XAxisLabels = { "Jan 01", "Jan 15", "Feb 01" };
+
+    private double CalculateProgress()
+    {
+        double totalToLose = startWeight - targetWeight;
+        double lostSoFar = startWeight - currentWeight;
+        return (lostSoFar / totalToLose) * 100;
+    }
+}
